@@ -20,6 +20,7 @@
     self.view.backgroundColor = [UIColor greenColor];
 
 
+    //是iOS系统自身的问题，经过测试，只要navigationControllers的栈中存在并自定义过navigationItem的viewController，在手势返回过程中设置navigationItem的相关属性，然后取消手势，就会出现导航栏错乱。根本原因是在pop的时候navigationBar没有调用willRemoveSubview移除相关navigationItem。
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self updateNavigationBar];
